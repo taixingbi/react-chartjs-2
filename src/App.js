@@ -1,52 +1,46 @@
-import React, {Component} from 'react';
-import { Line } from 'react-chartjs-2';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40]
-    }
-  ]
-};
+import About from './About';
+import Test from './Test';
+import Depression from './Depression';
 
-export default class App extends Component {
+// function Hello() {
+//   Hello
+//   return <div id="hello">hello</div>;
+// }
 
-  componentDidMount() {
-    // const { datasets } = this.refs.chart.chartInstance.data
-    // console.log(datasets[0].data);
-  }
-
-  render() {
-    return (
+function App() {
+  return (
+    <Router>
       <div>
-        <h2>Line Example</h2>
-        <div>
 
-          <Line ref="chart" data={data} />
-        </div>
+        {/* <ul>
+          <li>
+            <Link to="/home">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/test">Test</Link>
+          </li>
+          <li>
+            <Link to="/depression">Depression</Link>
+          </li>
+        </ul> */}
 
+        <Switch>
+          <Route path="/about" children={<About />} />
+          <Route path="/test/:id" component={Test} />
+          <Route path="/depression/:id" component={Depression} />
+
+        </Switch>
+        
       </div>
-    );
-  }
-
-
+    </Router>
+  );
 }
+
+export default App;
